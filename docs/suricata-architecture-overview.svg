@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1000" width="1400" height="1000">
+  <defs>
+    <linearGradient id="captureGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#357ABD;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="decodeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7B68EE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6A5ACD;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="flowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#50C878;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3FA66A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="streamGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB347;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E89B2E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="appGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E85555;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="detectGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C0392B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="outputGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8E44AD;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#333" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="1000" fill="#F8F9FA"/>
+
+  <!-- Title -->
+  <text x="700" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle" fill="#2C3E50">
+    Suricata Architecture Overview - High-Level Component Flow
+  </text>
+
+  <!-- Subtitle -->
+  <text x="700" y="70" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#7F8C8D">
+    Network Traffic Processing Pipeline
+  </text>
+
+  <!-- Network Input -->
+  <g id="network-input">
+    <rect x="50" y="120" width="180" height="80" rx="10" fill="#34495E" filter="url(#shadow)"/>
+    <text x="140" y="155" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#ECF0F1">
+      Network Traffic
+    </text>
+    <text x="140" y="180" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#BDC3C7">
+      Packets In
+    </text>
+  </g>
+
+  <!-- Arrow from Network to Capture -->
+  <path d="M 230 160 L 280 160" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- 1. Packet Capture -->
+  <g id="capture">
+    <rect x="280" y="120" width="220" height="120" rx="10" fill="url(#captureGrad)" filter="url(#shadow)"/>
+    <text x="390" y="150" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">
+      1. Packet Capture
+    </text>
+    <text x="390" y="175" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#E8F4F8">
+      source-*.c
+    </text>
+    <text x="390" y="195" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F4F8">
+      AF_PACKET, PCAP
+    </text>
+    <text x="390" y="215" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F4F8">
+      XDP, DPDK, NFQ
+    </text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 500 180 L 550 180" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- 2. Decode -->
+  <g id="decode">
+    <rect x="550" y="120" width="220" height="120" rx="10" fill="url(#decodeGrad)" filter="url(#shadow)"/>
+    <text x="660" y="150" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">
+      2. Decode
+    </text>
+    <text x="660" y="175" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#E8E8FF">
+      decode.c
+    </text>
+    <text x="660" y="195" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8E8FF">
+      Ethernet, IP, TCP/UDP
+    </text>
+    <text x="660" y="215" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8E8FF">
+      Header Parsing
+    </text>
+  </g>
+
+  <!-- Side: Defragmentation -->
+  <g id="defrag">
+    <rect x="820" y="120" width="180" height="80" rx="8" fill="#95A5A6" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="5,5" filter="url(#shadow)"/>
+    <text x="910" y="150" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">
+      Defragmentation
+    </text>
+    <text x="910" y="170" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#ECF0F1">
+      defrag.c
+    </text>
+    <text x="910" y="188" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#ECF0F1">
+      (if needed)
+    </text>
+  </g>
+  <path d="M 770 160 L 820 160" stroke="#7F8C8D" stroke-width="2" stroke-dasharray="3,3" fill="none"/>
+
+  <!-- Arrow down -->
+  <path d="M 660 240 L 660 290" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- 3. Flow Management -->
+  <g id="flow">
+    <rect x="550" y="290" width="220" height="120" rx="10" fill="url(#flowGrad)" filter="url(#shadow)"/>
+    <text x="660" y="320" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">
+      3. Flow Management
+    </text>
+    <text x="660" y="345" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#E8F8E8">
+      flow.c, flow-hash.c
+    </text>
+    <text x="660" y="365" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F8E8">
+      FlowGetFlowFromHash()
+    </text>
+    <text x="660" y="385" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F8E8">
+      Lookup/Create Flow
+    </text>
+  </g>
+
+  <!-- Arrow down -->
+  <path d="M 660 410 L 660 460" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- 4. Stream Reassembly -->
+  <g id="stream">
+    <rect x="550" y="460" width="220" height="120" rx="10" fill="url(#streamGrad)" filter="url(#shadow)"/>
+    <text x="660" y="490" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">
+      4. Stream Reassembly
+    </text>
+    <text x="660" y="515" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#FFF8E8">
+      stream-tcp.c
+    </text>
+    <text x="660" y="535" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFF8E8">
+      StreamTcp()
+    </text>
+    <text x="660" y="555" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFF8E8">
+      TCP State & Reassembly
+    </text>
+  </g>
+
+  <!-- Arrow down -->
+  <path d="M 660 580 L 660 630" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- 5. Application Layer -->
+  <g id="applayer">
+    <rect x="550" y="630" width="220" height="140" rx="10" fill="url(#appGrad)" filter="url(#shadow)"/>
+    <text x="660" y="660" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">
+      5. Protocol Parsing
+    </text>
+    <text x="660" y="685" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      app-layer-parser.c
+    </text>
+    <text x="660" y="705" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      AppLayerHandleTCPData()
+    </text>
+    <text x="660" y="725" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      HTTP, DNS, TLS, SMB
+    </text>
+    <text x="660" y="745" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#FFE8E8">
+      C/Rust Parsers
+    </text>
+  </g>
+
+  <!-- Arrow to Detection -->
+  <path d="M 550 700 L 320 700" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- 6. Detection Engine -->
+  <g id="detection">
+    <rect x="50" y="630" width="270" height="160" rx="10" fill="url(#detectGrad)" filter="url(#shadow)"/>
+    <text x="185" y="660" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">
+      6. Detection Engine
+    </text>
+    <text x="185" y="685" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      detect-engine.c
+    </text>
+    <text x="185" y="710" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      A. Prefilter (fast reject)
+    </text>
+    <text x="185" y="730" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      B. MPM (pattern matching)
+    </text>
+    <text x="185" y="750" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      C. Full Signature Inspection
+    </text>
+    <text x="185" y="770" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      D. Alert Generation
+    </text>
+  </g>
+
+  <!-- Arrow down from Detection -->
+  <path d="M 185 790 L 185 840" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+
+  <!-- 7. Output/Logging -->
+  <g id="output">
+    <rect x="50" y="840" width="270" height="120" rx="10" fill="url(#outputGrad)" filter="url(#shadow)"/>
+    <text x="185" y="870" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">
+      7. Output / Logging
+    </text>
+    <text x="185" y="895" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#F8E8FF">
+      output.c
+    </text>
+    <text x="185" y="915" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#F8E8FF">
+      EVE JSON, PCAP, Syslog
+    </text>
+    <text x="185" y="935" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#F8E8FF">
+      Alerts, Flows, Protocol Logs
+    </text>
+  </g>
+
+  <!-- Threading Model Side Panel -->
+  <g id="threading">
+    <rect x="1050" y="290" width="300" height="470" rx="10" fill="#34495E" stroke="#2C3E50" stroke-width="3" filter="url(#shadow)"/>
+    <text x="1200" y="325" font-family="Arial, sans-serif" font-size="22" font-weight="bold" text-anchor="middle" fill="#ECF0F1">
+      Threading Model
+    </text>
+
+    <!-- Flow Workers -->
+    <rect x="1070" y="350" width="260" height="90" rx="8" fill="#2ECC71" filter="url(#shadow)"/>
+    <text x="1200" y="375" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Flow Workers
+    </text>
+    <text x="1200" y="395" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F8E8">
+      flow-worker.c
+    </text>
+    <text x="1200" y="415" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F8E8">
+      FlowWorkerThreadInit()
+    </text>
+    <text x="1200" y="432" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#E8F8E8">
+      Complete packet processing
+    </text>
+
+    <!-- Receive Threads -->
+    <rect x="1070" y="460" width="260" height="70" rx="8" fill="#3498DB" filter="url(#shadow)"/>
+    <text x="1200" y="485" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Receive Threads
+    </text>
+    <text x="1200" y="505" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F4F8">
+      Packet capture from sources
+    </text>
+    <text x="1200" y="522" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#E8F4F8">
+      PktAcqLoop()
+    </text>
+
+    <!-- Management Threads -->
+    <rect x="1070" y="550" width="260" height="70" rx="8" fill="#E67E22" filter="url(#shadow)"/>
+    <text x="1200" y="575" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Management Threads
+    </text>
+    <text x="1200" y="595" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFF8E8">
+      flow-manager.c
+    </text>
+    <text x="1200" y="612" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#FFF8E8">
+      Flow lifecycle, stats
+    </text>
+
+    <!-- Output Threads -->
+    <rect x="1070" y="640" width="260" height="70" rx="8" fill="#9B59B6" filter="url(#shadow)"/>
+    <text x="1200" y="665" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Output Threads
+    </text>
+    <text x="1200" y="685" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#F8E8FF">
+      output-json.c
+    </text>
+    <text x="1200" y="702" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#F8E8FF">
+      Logging & alerting
+    </text>
+  </g>
+
+  <!-- Main Entry Point Box -->
+  <g id="entrypoint">
+    <rect x="1050" y="120" width="300" height="120" rx="10" fill="#16A085" stroke="#138D75" stroke-width="3" filter="url(#shadow)"/>
+    <text x="1200" y="150" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">
+      Main Entry Point
+    </text>
+    <text x="1200" y="175" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#E8F8F8">
+      main.c → suricata.c
+    </text>
+    <text x="1200" y="195" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F8F8">
+      SuricataInit()
+    </text>
+    <text x="1200" y="215" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F8F8">
+      SuricataMainLoop()
+    </text>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend">
+    <rect x="380" y="840" width="620" height="120" rx="8" fill="white" stroke="#BDC3C7" stroke-width="2" filter="url(#shadow)"/>
+    <text x="690" y="865" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#2C3E50">
+      Legend
+    </text>
+
+    <rect x="400" y="880" width="30" height="20" rx="3" fill="url(#captureGrad)"/>
+    <text x="440" y="895" font-family="Arial, sans-serif" font-size="12" fill="#2C3E50">
+      Packet Processing Stages
+    </text>
+
+    <rect x="620" y="880" width="30" height="20" rx="3" fill="url(#detectGrad)"/>
+    <text x="660" y="895" font-family="Arial, sans-serif" font-size="12" fill="#2C3E50">
+      Detection & Analysis
+    </text>
+
+    <rect x="400" y="910" width="30" height="20" rx="3" fill="url(#outputGrad)"/>
+    <text x="440" y="925" font-family="Arial, sans-serif" font-size="12" fill="#2C3E50">
+      Output Systems
+    </text>
+
+    <rect x="620" y="910" width="30" height="20" rx="3" fill="#95A5A6" stroke="#7F8C8D" stroke-width="1" stroke-dasharray="3,3"/>
+    <text x="660" y="925" font-family="Arial, sans-serif" font-size="12" fill="#2C3E50">
+      Optional Processing
+    </text>
+
+    <path d="M 830 890 L 870 890" stroke="#333" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+    <text x="880" y="895" font-family="Arial, sans-serif" font-size="12" fill="#2C3E50">
+      Data Flow
+    </text>
+  </g>
+
+  <!-- Footer -->
+  <text x="700" y="990" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#7F8C8D">
+    Suricata IDS/IPS Engine - Multi-threaded Network Security Monitoring Architecture
+  </text>
+</svg>

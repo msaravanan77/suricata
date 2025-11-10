@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 2200" width="1600" height="2200">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#357ABD;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7B68EE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6A5ACD;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#50C878;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3FA66A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB347;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E89B2E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad5" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E85555;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad6" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C0392B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad7" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8E44AD;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="3" dy="3" stdDeviation="4" flood-opacity="0.4"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="11" refY="3" orient="auto">
+      <polygon points="0 0, 12 3, 0 6" fill="#2C3E50" />
+    </marker>
+    <marker id="arrow-red" markerWidth="12" markerHeight="12" refX="11" refY="3" orient="auto">
+      <polygon points="0 0, 12 3, 0 6" fill="#E74C3C" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="2200" fill="#F5F7FA"/>
+
+  <!-- Title -->
+  <text x="800" y="50" font-family="Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle" fill="#2C3E50">
+    Suricata Detailed Component Flow - Packet Journey
+  </text>
+  <text x="800" y="85" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" fill="#7F8C8D">
+    From Network Capture to Alert/Logging - File and Function Level Details
+  </text>
+
+  <!-- ============ STAGE 0: NETWORK INPUT ============ -->
+  <g id="stage0">
+    <rect x="600" y="130" width="400" height="100" rx="12" fill="#34495E" filter="url(#shadow)"/>
+    <text x="800" y="165" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#ECF0F1">
+      Network Traffic Input
+    </text>
+    <text x="800" y="195" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#BDC3C7">
+      Raw Packets (Ethernet Frames)
+    </text>
+    <text x="800" y="215" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#95A5A6">
+      Wire → Network Interface
+    </text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 800 230 L 800 280" stroke="#2C3E50" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- ============ STAGE 1: PACKET CAPTURE ============ -->
+  <g id="stage1">
+    <rect x="100" y="280" width="1400" height="220" rx="12" fill="url(#grad1)" stroke="#2C3E50" stroke-width="2" filter="url(#shadow)"/>
+
+    <!-- Title -->
+    <text x="800" y="320" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="white">
+      STAGE 1: PACKET CAPTURE
+    </text>
+
+    <!-- Main module -->
+    <rect x="130" y="345" width="450" height="140" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="355" y="375" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+      Receive Thread Modules
+    </text>
+    <text x="355" y="400" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#E8F4F8">
+      📁 source-pcap.c
+    </text>
+    <text x="355" y="420" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#E8F4F8">
+      📁 source-af-packet.c
+    </text>
+    <text x="355" y="440" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#E8F4F8">
+      📁 source-af-xdp.c
+    </text>
+    <text x="355" y="460" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#E8F4F8">
+      📁 source-dpdk.c, source-nfq.c
+    </text>
+
+    <!-- Functions -->
+    <rect x="620" y="345" width="450" height="140" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="845" y="375" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+      Key Functions
+    </text>
+    <text x="845" y="400" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#E8F4F8">
+      ⚙️ ReceivePcap() / ReceiveAFP()
+    </text>
+    <text x="845" y="420" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#E8F4F8">
+      ⚙️ ReceiveAFXDP() / ReceiveDPDK()
+    </text>
+    <text x="845" y="440" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#E8F4F8">
+      ⚙️ PktAcqLoop() - Main acquisition loop
+    </text>
+    <text x="845" y="460" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#E8F4F8">
+      ⚙️ PacketPoolGetPacket() - Get packet buffer
+    </text>
+
+    <!-- Description -->
+    <rect x="1110" y="345" width="360" height="140" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="1290" y="375" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Responsibilities
+    </text>
+    <text x="1290" y="400" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F4F8">
+      • Capture packets from network
+    </text>
+    <text x="1290" y="420" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F4F8">
+      • Support multiple capture sources
+    </text>
+    <text x="1290" y="440" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F4F8">
+      • Zero-copy optimizations
+    </text>
+    <text x="1290" y="460" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F4F8">
+      • Feed packets to worker threads
+    </text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 800 500 L 800 560" stroke="#2C3E50" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- ============ STAGE 2: DECODE ============ -->
+  <g id="stage2">
+    <rect x="100" y="560" width="1400" height="220" rx="12" fill="url(#grad2)" stroke="#2C3E50" stroke-width="2" filter="url(#shadow)"/>
+
+    <text x="800" y="600" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="white">
+      STAGE 2: DECODE & PACKET PARSING
+    </text>
+
+    <!-- Main module -->
+    <rect x="130" y="625" width="450" height="140" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="355" y="655" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+      Decoder Modules
+    </text>
+    <text x="355" y="680" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#E8E8FF">
+      📁 decode.c (main decoder)
+    </text>
+    <text x="355" y="700" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#E8E8FF">
+      📁 decode-ethernet.c
+    </text>
+    <text x="355" y="720" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#E8E8FF">
+      📁 decode-ipv4.c, decode-ipv6.c
+    </text>
+    <text x="355" y="740" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#E8E8FF">
+      📁 decode-tcp.c, decode-udp.c
+    </text>
+
+    <!-- Functions -->
+    <rect x="620" y="625" width="450" height="140" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="845" y="655" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+      Key Functions
+    </text>
+    <text x="845" y="680" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#E8E8FF">
+      ⚙️ DecodeEthernet()
+    </text>
+    <text x="845" y="700" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#E8E8FF">
+      ⚙️ DecodeIPV4(), DecodeIPV6()
+    </text>
+    <text x="845" y="720" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#E8E8FF">
+      ⚙️ DecodeTCP(), DecodeUDP()
+    </text>
+    <text x="845" y="740" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#E8E8FF">
+      ⚙️ DecodeICMPV4(), DecodeSCTP()
+    </text>
+
+    <!-- Description -->
+    <rect x="1110" y="625" width="360" height="140" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="1290" y="655" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Responsibilities
+    </text>
+    <text x="1290" y="680" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8E8FF">
+      • Parse protocol headers
+    </text>
+    <text x="1290" y="700" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8E8FF">
+      • Extract IP/Port/Protocol info
+    </text>
+    <text x="1290" y="720" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8E8FF">
+      • Populate Packet structure
+    </text>
+    <text x="1290" y="740" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8E8FF">
+      • Handle VLAN, tunnels
+    </text>
+  </g>
+
+  <!-- Side box for Defrag -->
+  <rect x="50" y="600" width="280" height="120" rx="8" fill="#95A5A6" stroke="#7F8C8D" stroke-width="3" stroke-dasharray="8,4" filter="url(#shadow)"/>
+  <text x="190" y="635" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+    IP Defragmentation
+  </text>
+  <text x="190" y="660" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#ECF0F1">
+    📁 defrag.c (3,184 lines)
+  </text>
+  <text x="190" y="680" font-family="Courier New, monospace" font-size="12" text-anchor="middle" fill="#ECF0F1">
+    ⚙️ Defrag()
+  </text>
+  <text x="190" y="700" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#ECF0F1">
+    Reassembles IP fragments
+  </text>
+  <path d="M 330 660 L 600 660" stroke="#7F8C8D" stroke-width="3" stroke-dasharray="5,5" fill="none"/>
+
+  <!-- Arrow -->
+  <path d="M 800 780 L 800 840" stroke="#2C3E50" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- ============ STAGE 3: FLOW MANAGEMENT ============ -->
+  <g id="stage3">
+    <rect x="100" y="840" width="1400" height="220" rx="12" fill="url(#grad3)" stroke="#2C3E50" stroke-width="2" filter="url(#shadow)"/>
+
+    <text x="800" y="880" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="white">
+      STAGE 3: FLOW MANAGEMENT
+    </text>
+
+    <!-- Main module -->
+    <rect x="130" y="905" width="450" height="140" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="355" y="935" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+      Flow Modules
+    </text>
+    <text x="355" y="960" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#E8F8E8">
+      📁 flow.c (core flow structure)
+    </text>
+    <text x="355" y="980" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#E8F8E8">
+      📁 flow-hash.c (flow hash table)
+    </text>
+    <text x="355" y="1000" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#E8F8E8">
+      📁 flow-worker.c (workers)
+    </text>
+    <text x="355" y="1020" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#E8F8E8">
+      📁 flow-manager.c (lifecycle)
+    </text>
+
+    <!-- Functions -->
+    <rect x="620" y="905" width="450" height="140" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="845" y="935" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+      Key Functions
+    </text>
+    <text x="845" y="960" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#E8F8E8">
+      ⚙️ FlowGetFlowFromHash() - Lookup
+    </text>
+    <text x="845" y="980" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#E8F8E8">
+      ⚙️ FlowHandlePacket() - Process pkt
+    </text>
+    <text x="845" y="1000" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#E8F8E8">
+      ⚙️ FLOWLOCK_WRLOCK() - Lock flow
+    </text>
+    <text x="845" y="1020" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#E8F8E8">
+      ⚙️ FlowInitConfig() - Initialize
+    </text>
+
+    <!-- Description -->
+    <rect x="1110" y="905" width="360" height="140" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="1290" y="935" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Responsibilities
+    </text>
+    <text x="1290" y="960" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F8E8">
+      • Bi-directional flow tracking
+    </text>
+    <text x="1290" y="980" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F8E8">
+      • Flow creation/lookup (5-tuple)
+    </text>
+    <text x="1290" y="1000" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F8E8">
+      • State management per flow
+    </text>
+    <text x="1290" y="1020" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#E8F8E8">
+      • Lock-per-flow thread safety
+    </text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 800 1060 L 800 1120" stroke="#2C3E50" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- ============ STAGE 4: STREAM REASSEMBLY ============ -->
+  <g id="stage4">
+    <rect x="100" y="1120" width="1400" height="220" rx="12" fill="url(#grad4)" stroke="#2C3E50" stroke-width="2" filter="url(#shadow)"/>
+
+    <text x="800" y="1160" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="white">
+      STAGE 4: STREAM REASSEMBLY (TCP)
+    </text>
+
+    <!-- Main module -->
+    <rect x="130" y="1185" width="450" height="140" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="355" y="1215" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+      Stream Modules
+    </text>
+    <text x="355" y="1240" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#FFF8E8">
+      📁 stream-tcp.c (7,269 lines!)
+    </text>
+    <text x="355" y="1260" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#FFF8E8">
+      📁 stream-tcp-reassemble.c
+    </text>
+    <text x="355" y="1280" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#FFF8E8">
+      📁 stream-tcp-sack.c
+    </text>
+    <text x="355" y="1300" font-family="Courier New, monospace" font-size="14" text-anchor="middle" fill="#FFF8E8">
+      📁 stream.c (generic streams)
+    </text>
+
+    <!-- Functions -->
+    <rect x="620" y="1185" width="450" height="140" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="845" y="1215" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+      Key Functions
+    </text>
+    <text x="845" y="1240" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFF8E8">
+      ⚙️ StreamTcp() - Main TCP handler
+    </text>
+    <text x="845" y="1260" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFF8E8">
+      ⚙️ StreamTcpReassemble()
+    </text>
+    <text x="845" y="1280" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFF8E8">
+      ⚙️ StreamTcpHandleState()
+    </text>
+    <text x="845" y="1300" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFF8E8">
+      ⚙️ StreamTcpDetectLogFlush()
+    </text>
+
+    <!-- Description -->
+    <rect x="1110" y="1185" width="360" height="140" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="1290" y="1215" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Responsibilities
+    </text>
+    <text x="1290" y="1240" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFF8E8">
+      • TCP state machine tracking
+    </text>
+    <text x="1290" y="1260" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFF8E8">
+      • Stream reassembly (reorder)
+    </text>
+    <text x="1290" y="1280" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFF8E8">
+      • Handle retransmissions
+    </text>
+    <text x="1290" y="1300" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFF8E8">
+      • Create stream slices for parsers
+    </text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 800 1340 L 800 1400" stroke="#2C3E50" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- ============ STAGE 5: APPLICATION LAYER ============ -->
+  <g id="stage5">
+    <rect x="100" y="1400" width="1400" height="240" rx="12" fill="url(#grad5)" stroke="#2C3E50" stroke-width="2" filter="url(#shadow)"/>
+
+    <text x="800" y="1440" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="white">
+      STAGE 5: APPLICATION LAYER PROTOCOL PARSING
+    </text>
+
+    <!-- Main module -->
+    <rect x="130" y="1465" width="450" height="160" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="355" y="1495" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+      App-Layer Framework + Parsers
+    </text>
+    <text x="355" y="1520" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      📁 app-layer-parser.c (framework)
+    </text>
+    <text x="355" y="1540" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      📁 app-layer-htp.c (HTTP - 5,725 lines)
+    </text>
+    <text x="355" y="1560" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      📁 app-layer-smtp.c (4,258 lines)
+    </text>
+    <text x="355" y="1580" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      📁 app-layer-ssl.c, app-layer-dns.c
+    </text>
+    <text x="355" y="1600" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      📂 rust/src/* (30+ Rust parsers)
+    </text>
+
+    <!-- Functions -->
+    <rect x="620" y="1465" width="450" height="160" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="845" y="1495" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+      Key Functions
+    </text>
+    <text x="845" y="1520" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      ⚙️ AppLayerHandleTCPData()
+    </text>
+    <text x="845" y="1540" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      ⚙️ AppLayerParserParse() - Dispatch
+    </text>
+    <text x="845" y="1560" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      ⚙️ HTPHandleRequest/Response()
+    </text>
+    <text x="845" y="1580" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      ⚙️ rs_dns_parse_request() (Rust)
+    </text>
+    <text x="845" y="1600" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      ⚙️ AppLayerProtoDetect() - Detect proto
+    </text>
+
+    <!-- Description -->
+    <rect x="1110" y="1465" width="360" height="160" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="1290" y="1495" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Responsibilities
+    </text>
+    <text x="1290" y="1520" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      • Protocol detection
+    </text>
+    <text x="1290" y="1540" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      • Parse application protocols
+    </text>
+    <text x="1290" y="1560" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      • Create transactions (HTTP, DNS)
+    </text>
+    <text x="1290" y="1580" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      • Extract fields for detection
+    </text>
+    <text x="1290" y="1600" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      • C/Rust hybrid architecture
+    </text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 800 1640 L 800 1700" stroke="#E74C3C" stroke-width="5" fill="none" marker-end="url(#arrow-red)"/>
+  <text x="820" y="1675" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#E74C3C">
+    TO DETECTION
+  </text>
+
+  <!-- ============ STAGE 6: DETECTION ENGINE ============ -->
+  <g id="stage6">
+    <rect x="100" y="1700" width="1400" height="280" rx="12" fill="url(#grad6)" stroke="#2C3E50" stroke-width="2" filter="url(#shadow)"/>
+
+    <text x="800" y="1740" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="white">
+      STAGE 6: DETECTION ENGINE - THREAT ANALYSIS
+    </text>
+
+    <!-- Main module -->
+    <rect x="130" y="1765" width="450" height="200" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="355" y="1795" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+      Detection Modules
+    </text>
+    <text x="355" y="1820" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      📁 detect-engine.c (5,307 lines!)
+    </text>
+    <text x="355" y="1840" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      📁 detect-engine-mpm.c (MPM - 2,712)
+    </text>
+    <text x="355" y="1860" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      📁 detect-engine-alert.c
+    </text>
+    <text x="355" y="1880" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      📁 detect-content.c, detect-flow.c
+    </text>
+    <text x="355" y="1900" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      📁 detect-parse.c (5,500 lines)
+    </text>
+    <text x="355" y="1920" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      📁 detect-engine-prefilter.c
+    </text>
+    <text x="355" y="1940" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      📁 detect-engine-siggroup.c
+    </text>
+
+    <!-- Functions -->
+    <rect x="620" y="1765" width="450" height="200" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="845" y="1795" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+      Detection Pipeline
+    </text>
+    <text x="845" y="1820" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      ⚙️ Detect() - Main detection entry
+    </text>
+    <text x="845" y="1840" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      A. DetectPrefilter() - Fast reject
+    </text>
+    <text x="845" y="1860" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      B. DetectMpmMatch() - Pattern match
+    </text>
+    <text x="845" y="1880" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      C. SigMatchSignatures() - Full inspect
+    </text>
+    <text x="845" y="1900" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      D. DetectContentMatch() - Content
+    </text>
+    <text x="845" y="1920" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      E. PacketAlertAppend() - Create alert
+    </text>
+    <text x="845" y="1940" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#FFE8E8">
+      ⚙️ SigGroupHead - Sig grouping
+    </text>
+
+    <!-- Description -->
+    <rect x="1110" y="1765" width="360" height="200" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="1290" y="1795" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      3-Stage Detection
+    </text>
+    <text x="1290" y="1820" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      1️⃣ Prefilter: Quick reject
+    </text>
+    <text x="1290" y="1840" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      2️⃣ MPM: Multi-pattern matching
+    </text>
+    <text x="1290" y="1860" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      • Aho-Corasick / Hyperscan
+    </text>
+    <text x="1290" y="1880" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      3️⃣ Full Inspection: All keywords
+    </text>
+    <text x="1290" y="1900" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      • Content, PCRE, flow, threshold
+    </text>
+    <text x="1290" y="1920" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      • App-layer buffers (HTTP fields)
+    </text>
+    <text x="1290" y="1940" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#FFE8E8">
+      📊 Alert if signature matches
+    </text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 800 1980 L 800 2040" stroke="#2C3E50" stroke-width="4" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- ============ STAGE 7: OUTPUT ============ -->
+  <g id="stage7">
+    <rect x="100" y="2040" width="1400" height="140" rx="12" fill="url(#grad7)" stroke="#2C3E50" stroke-width="2" filter="url(#shadow)"/>
+
+    <text x="800" y="2075" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="white">
+      STAGE 7: OUTPUT &amp; LOGGING
+    </text>
+
+    <!-- Main module -->
+    <rect x="130" y="2095" width="450" height="75" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="355" y="2120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Output Modules
+    </text>
+    <text x="355" y="2140" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#F8E8FF">
+      📁 output.c, output-json.c
+    </text>
+    <text x="355" y="2158" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#F8E8FF">
+      📁 output-json-alert/flow/dns/http.c
+    </text>
+
+    <!-- Functions -->
+    <rect x="620" y="2095" width="450" height="75" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="845" y="2120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Key Functions
+    </text>
+    <text x="845" y="2140" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#F8E8FF">
+      ⚙️ OutputLoggerLog() - Dispatch
+    </text>
+    <text x="845" y="2158" font-family="Courier New, monospace" font-size="13" text-anchor="middle" fill="#F8E8FF">
+      ⚙️ JsonAlertLogger(), JsonFlowLogger()
+    </text>
+
+    <!-- Description -->
+    <rect x="1110" y="2095" width="360" height="75" rx="8" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="2"/>
+    <text x="1290" y="2120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">
+      Output Types
+    </text>
+    <text x="1290" y="2140" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#F8E8FF">
+      EVE JSON (alerts, flows, proto logs)
+    </text>
+    <text x="1290" y="2158" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#F8E8FF">
+      PCAP, Syslog, Redis, Custom
+    </text>
+  </g>
+
+  <!-- Footer -->
+  <text x="800" y="2195" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#7F8C8D">
+    Suricata IDS/IPS - Complete Packet Processing Pipeline with File &amp; Function References
+  </text>
+</svg>
